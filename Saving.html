@@ -131,11 +131,24 @@
             editButton.value = 'Edit';
             editButton.onclick = () => {
                 //console.log('hello');
-                localStorage.removeItem(obj.email);
+                //localStorage.removeItem(obj.email);
                 parentElem.removeChild(childElem);
                 document.getElementById('usernameInputTag').value = obj.name;
                 document.getElementById('emailInputTag').value = obj.email;
                 document.getElementById('phoneInputTag').value = obj.phonenumber;
+
+                axios.put(`https://crudcrud.com/api/e35cd8f866114b4e9ca1fe8c6e64f0a7/Assignments/${obj._id}`,{name:usernameInputTag, email:emailInputTag,phonenumber:phoneInputTag})
+                .then(response =>(response))
+                .catch((err) => {
+                        document.body.innerHTML = document.body.innerHTML + "<h4>Something Went Wrong</h4>"
+                        console.log(err);
+                    })
+                    axios.delete(`https://crudcrud.com/api/e35cd8f866114b4e9ca1fe8c6e64f0a7/Assignments/${obj._id}`)
+                    .then(response => response)
+                    .catch((err) => {
+                        document.body.innerHTML = document.body.innerHTML + "<h4>Something Went Wrong</h4>"
+                        console.log(err);
+                    })
 
             }
 
