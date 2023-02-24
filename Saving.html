@@ -78,7 +78,23 @@
             
             //localStorage.setItem(obj.email,JSON.stringify(obj));
             //showUserOnScreen(obj);
+            
+            
         }
+        window.addEventListener("DOMContentLoaded", () =>{
+                axios.get("https://crudcrud.com/api/dcb10e5e48fe4203a3ce16c94e59c75b/Assignments")
+                .then((res) =>{
+                    for(var i=0; i<res.data.length;i++){
+                        showUserOnScreen(res.data[i]);
+                        console.log(res)
+                    }
+                })
+                .catch((err)=>{
+                document.body.innerHTML = document.body.innerHTML + "<h4>Something Went Wrong</h4>"
+                console.log(err);
+              })
+
+            })
         function showUserOnScreen(obj){
             const parentElem = document.getElementById('listofitems');
             const childElem = document.createElement('li');
@@ -90,6 +106,7 @@
                 localStorage.removeItem(obj.email);
                 parentElem.removeChild(childElem);
              }
+
 
 
              const editButton = document.createElement('input');
